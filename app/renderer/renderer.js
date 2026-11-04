@@ -415,12 +415,18 @@ pill.oncontextmenu = e => { e.preventDefault(); settings.hidden ? openSettings()
 pill.onclick = () => {
   if (justDragged) return
   if (ask) { card.hidden ? renderQ(true) : closeCard(); return }
-  // jump to the most recent session that finished or needs you, and clear it
-  const s = [...sessions.values()].filter(x => x.state === 'done' || x.state === 'attention').sort((a, b) => b.ts - a.ts)[0]
+  // Jump to the terminal of the most relevant session: one that finished / needs you first (and clear that flag),
+  // then one that is working, then any other; most recently active wins ties.
+  const rank = x => (x.state === 'done' || x.state === 'attention') ? 2 : x.state === 'thinking' ? 1 : 0
+  const ordered = [...sessions.values()].sort((a, b) => rank(b) - rank(a) || b.ts - a.ts)
+  const s = ordered[0]
   if (!s) return
-  s.state = 'idle'
-  if (noticeSid === s.id) { noticeSid = null; closeCard() }
-  focusTerm(s); refresh()
+  if (s.state === 'done' || s.state === 'attention') {
+    s.state = 'idle'
+    if (noticeSid === s.id) { noticeSid = null; closeCard() }
+  }
+  focusTerm(s.hwnd ? s : ordered.find(x => x.hwnd))   // terminal not known for the top session -> fall back to one that is
+  refresh()
 }
 
 api.onState(d => {
