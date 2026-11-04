@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self'">
+  <title>Claude Bubble</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="anchor">
+  <div id="stack">
+    <div id="card" class="hit" hidden></div>
+    <div id="sessions" class="hit" hidden></div>
+    <div id="pill" class="hit">
+      <div id="orb"></div>
+      <div id="label"><span></span></div>
+      <button id="gear" title="Settings" aria-label="Settings"></button>
+    </div>
+  </div>
+  </div>
+  <div id="settings" class="hit" hidden></div>
+  <script src="vendor/motion.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

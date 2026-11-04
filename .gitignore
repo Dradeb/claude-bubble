@@ -1,0 +1,12 @@
+node_modules/
+dist/
+shots/
+shots2/
+*.err
+*.out
+*.log
+.DS_Store
+Thumbs.db
+full.png
+win*.png
+shot*.png

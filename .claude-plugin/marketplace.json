@@ -1,0 +1,12 @@
+{
+  "name": "claude-bubble",
+  "description": "Claude Bubble - a floating widget that shows what Claude Code is doing",
+  "owner": { "name": "Youness Dradeb" },
+  "plugins": [
+    {
+      "name": "bubble",
+      "source": "./plugin",
+      "description": "Floating Windows widget: thinking / answered / needs-you states, answer Claude's questions from a card, jump to the right terminal."
+    }
+  ]
+}

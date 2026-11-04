@@ -1,0 +1,8 @@
+{
+  "name": "bubble",
+  "version": "0.1.0",
+  "description": "Hooks that feed the Claude Bubble desktop widget (Windows). Run /bubble:setup to install and start the widget.",
+  "author": {
+    "name": "Youness Dradeb"
+  }
+}

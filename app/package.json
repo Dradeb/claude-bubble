@@ -1,0 +1,64 @@
+{
+  "name": "claude-bubble",
+  "version": "0.1.0",
+  "description": "A floating bubble that shows what Claude Code is doing and lets you answer its questions.",
+  "main": "main.js",
+  "keywords": [],
+  "author": "Youness Dradeb",
+  "license": "ISC",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis && node tools/hash.js"
+  },
+  "productName": "Claude Bubble",
+  "private": true,
+  "build": {
+    "appId": "com.claudebubble.app",
+    "productName": "Claude Bubble",
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "bridge.js",
+      "integration.js",
+      "winhelper.js",
+      "preload.js",
+      "renderer/**",
+      "assets/icon.png",
+      "package.json",
+      "!node_modules/koffi/{doc,vendor}/**",
+      "!**/*.md"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "deleteAppDataOnUninstall": false,
+      "shortcutName": "Claude Bubble",
+      "artifactName": "Claude-Bubble-Setup.exe"
+    }
+  },
+  "devDependencies": {
+    "@fontsource/red-hat-display": "^5.3.0",
+    "electron": "^45.2.2",
+    "electron-builder": "^26.18.0",
+    "motion": "^14.9.1"
+  },
+  "dependencies": {
+    "koffi": "^3.3.6"
+  }
+}
